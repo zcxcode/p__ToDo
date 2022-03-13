@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: #177AB7;
+  opacity: .7;
+}
+
+.header__title {
+  font-size: 24px;
+}
+
+.link {
+  display: inline-block;
+  min-width: 120px;
+  margin-left: 10px;
+  padding: 10px;
+  text-align: center;
+  font-size: 22px;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.link:hover {
+  background-color: white;
+}

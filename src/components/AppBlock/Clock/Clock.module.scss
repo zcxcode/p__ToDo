@@ -1,0 +1,29 @@
+.wrapper {
+  position: relative;
+  margin-bottom: 30px;
+  padding: 15px 15px 15px 30px;
+  border-radius: 5px;
+  background-color: #010101;
+  filter: drop-shadow(1px 1px 7px green);
+}
+
+.wrapper::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -30px;
+  left: -80px;
+  width: 150px;
+  height: 80px;
+  background-image: url("./img/clock.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.clock {
+  width: 100px;
+  font-family: "LCD";
+  font-size: 34px;
+  color: #48fa6a;
+}

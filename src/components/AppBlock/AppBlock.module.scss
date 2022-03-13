@@ -1,0 +1,13 @@
+.todo {
+  min-height: 100%;
+  padding-top: 50px;
+  
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+
