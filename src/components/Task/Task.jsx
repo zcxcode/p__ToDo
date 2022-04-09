@@ -1,5 +1,5 @@
 import style from "./Task.module.scss";
-import TaskManagerContext from "../TaskManagerContext";
+import TaskManagerContext from "../TaskManager/TaskManagerContext";
 import { useContext } from "react";
 
 function Task({ itemsList }) {

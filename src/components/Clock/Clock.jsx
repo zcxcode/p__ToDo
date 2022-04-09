@@ -14,6 +14,7 @@ function Clock() {
       clearInterval(timerId); 
     }; 
   }, []);
+  
   return (
     <div className={style.wrapper}>
       <div className={style.clock}>

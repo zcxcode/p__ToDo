@@ -1,10 +1,16 @@
 import { useState, useContext } from "react";
-import TaskManagerContext from "../TaskManagerContext";
+import TaskManagerContext from "../TaskManager/TaskManagerContext";
+import { useDispatch, useSelector } from "react-redux";
 import style from "./Form.module.scss";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
 function Form({ handlerForm, validateObj }) {
+  const dispatch = useDispatch()
+  const tasks = useSelector((state) => state.tasks);
+
+
+
   const [userInput, setUserInput] = useState("");
   const { clearList } = useContext(TaskManagerContext);
 
@@ -37,13 +43,18 @@ function Form({ handlerForm, validateObj }) {
     }
   };
 
+  function removez() {
+    
+    console.log(dispatch({type: "CHECK_TASK"}));
+  }
+
   return (
     <div className="task-input">
       <form className={style.form} onSubmit={handlerSubmit}>
         <label>
           <TextField
             value={userInput}
-            onChange={handlerInput}
+            onChange={removez}
             className={style.textarea}
             label="Enter task"
             variant="filled"
@@ -56,8 +67,8 @@ function Form({ handlerForm, validateObj }) {
           variant="contained"
           type="button"
           onClick={() => {
-            localStorage.clear();
-            clearList();
+            dispatch({type: "ADD_TASK", content: {value: "lol", id: Date.now()}})
+            console.log(tasks);
           }}
         >
           Clear list
