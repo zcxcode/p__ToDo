@@ -1,7 +1,7 @@
 {
-  "name": "ToDo",
+  "name": "spa-todo",
   "homepage": "https://zcxcode.github.io/p__ToDo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.8.2",

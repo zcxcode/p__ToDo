@@ -10,4 +10,6 @@
 
 - **_React.js_**
 
+- **_Redux_**
+
 - **_Webpack_**

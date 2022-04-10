@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Header from "./components/Header/Header"
 import "./fonts.css"
 import style from "./App.module.scss"
-import AppBlock from "./components/AppBlock/AppBlock";
-import About from "./components/About/About";
+import AppBlock from "./pages/AppBlock";
+import About from "./pages/About";
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import style  from "./AppBlock.module.scss"
 import Clock from "../../components/Clock"
-import TaskManager from "./TaskManager/TaskManager"
+import TaskManager from "../../components/TaskManager"
 
 function AppBlock() {
   return (

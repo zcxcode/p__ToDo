@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { checkToDoS, setToDoS } from "../../services/todoLStorage.handler";
 import style from "./TaskManager.module.scss";
 import TaskManagerContext from "./TaskManagerContext";
-import Form from "./Form/Form";
-import Task from "./Task/Task";
+import Form from "../Form";
+import Task from "../Task";
 
 function TaskManager() {
   const [todos, setTodo] = useState(checkToDoS());

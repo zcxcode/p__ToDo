@@ -1,15 +1,26 @@
 import style from "./Task.module.scss";
-import TaskManagerContext from "../TaskManager/TaskManagerContext";
-import { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-function Task({ itemsList }) {
-  const { deleteTask } = useContext(TaskManagerContext);
+function Task() {
+  const dispatch = useDispatch();
+  const todos = useSelector((state) => state.tasks);
+  console.log(todos);
+  function deleteTask(i) {
+    dispatch({ type: "REMOVE_TASK", content: i });
+  }
 
   return (
     <ul>
-      {itemsList.map((text, i) => (
-        <li className={style.task} key={i} onClick={(e) => deleteTask(e.target.innerText)}>
-          {text}
+      {todos.map((i) => (
+        <li
+          id={i.id}
+          className={style.task}
+          key={i.id}
+          onClick={(e) => {
+            deleteTask(e.target.id);
+          }}
+        >
+          {i.title}
         </li>
       ))}
     </ul>

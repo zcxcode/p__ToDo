@@ -1,52 +1,38 @@
-import { useState, useContext } from "react";
-import TaskManagerContext from "../TaskManager/TaskManagerContext";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./Form.module.scss";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
 function Form({ handlerForm, validateObj }) {
-  const dispatch = useDispatch()
-  const tasks = useSelector((state) => state.tasks);
+  const dispatch = useDispatch();
+  const userInput = useSelector((state) => state.input);
 
-
-
-  const [userInput, setUserInput] = useState("");
-  const { clearList } = useContext(TaskManagerContext);
+  const addTask = (taskObj) => {
+    if (userInput === "" || userInput === "Enter text!") {
+      dispatch({ type: "USER_INPUT", content: "Enter text!" });
+      const clearField = setTimeout(() => {
+        dispatch({ type: "USER_INPUT", content: "" });
+        clearTimeout(clearField);
+      }, 500);
+    } else {
+      dispatch({ type: "ADD_TASK", content: taskObj });
+      dispatch({ type: "USER_INPUT", content: "" });
+    }
+  };
 
   const handlerInput = (e) => {
-    setUserInput(e.currentTarget.value);
+    const text = e.currentTarget.value;
+    dispatch({ type: "USER_INPUT", content: text });
   };
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    console.log(userInput);
-    const errMsg = "Enter uniq task please!";
-    const errMsgEmpty = "Enter task please!";
-    if (userInput === "" || userInput === " ") {
-      document.querySelector(`.${style.textarea} input`).setAttribute("readOnly", true);
-      setUserInput(errMsgEmpty);
-      setTimeout(() => {
-        document.querySelector(`.${style.textarea} input`).removeAttribute("readOnly");
-        setUserInput("");
-      }, 2000);
-    } else if (!validateObj.includes(userInput) && userInput !== errMsg && userInput !== errMsgEmpty) {
-      handlerForm(userInput);
-      setUserInput("");
-    } else {
-      document.querySelector(`.${style.textarea} input`).setAttribute("readOnly", true);
-      setUserInput(errMsg);
-      setTimeout(() => {
-        document.querySelector(`.${style.textarea} input`).removeAttribute("readOnly");
-        setUserInput("");
-      }, 2000);
-    }
+    const taskObj = {
+      title: userInput,
+      id: Date.now()
+    };
+    addTask(taskObj);
   };
-
-  function removez() {
-    
-    console.log(dispatch({type: "CHECK_TASK"}));
-  }
 
   return (
     <div className="task-input">
@@ -54,7 +40,7 @@ function Form({ handlerForm, validateObj }) {
         <label>
           <TextField
             value={userInput}
-            onChange={removez}
+            onChange={handlerInput}
             className={style.textarea}
             label="Enter task"
             variant="filled"
@@ -67,8 +53,7 @@ function Form({ handlerForm, validateObj }) {
           variant="contained"
           type="button"
           onClick={() => {
-            dispatch({type: "ADD_TASK", content: {value: "lol", id: Date.now()}})
-            console.log(tasks);
+            dispatch({ type: "CLEAR_LIST" });
           }}
         >
           Clear list
